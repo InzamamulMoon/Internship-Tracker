@@ -1,0 +1,6 @@
+Active virtual env whenever i want to work on backend:
+cd intern/backend
+source venv/bin/activate
+
+to deactivate:
+deactivate
