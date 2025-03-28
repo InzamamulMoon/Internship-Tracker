@@ -1,6 +1,23 @@
+
+-----------------------------------------------------------
+Step 1
+-----------------------------------------------------------
 Active virtual env whenever i want to work on backend:
 cd intern/backend
 source venv/bin/activate
 
 to deactivate:
 deactivate
+(for mac ... (not windows))
+-----------------------------------------------------------
+Active virtual env window:
+cd intern/backend
+activate:   venv\Scripts\activate
+to deactivate: deactivate
+(for windows)
+
+install all dependencies into your virutal env: pip install -r requirements.txt
+
+-----------------------------------------------------------
+Step 2: Authen - Step by Step Guide
+-----------------------------------------------------------
