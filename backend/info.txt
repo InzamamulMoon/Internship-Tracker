@@ -4,7 +4,7 @@ Step 1
 -----------------------------------------------------------
 Active virtual env whenever i want to work on backend:
 cd intern/backend
-source venv/bin/activate
+source f_venv/bin/activate
 
 to deactivate:
 deactivate
@@ -12,7 +12,7 @@ deactivate
 -----------------------------------------------------------
 Active virtual env window:
 cd intern/backend
-activate:   venv\Scripts\activate
+activate:   f_venv\Scripts\activate
 to deactivate: deactivate
 (for windows)
 
