@@ -31,7 +31,7 @@ def format_content(lst):
             value=company_name[0]
 
         #Handler to format and stores Intenrship's company name 
-        if mod == 0 and str(value).strip()!=r"\u21b3":
+        if mod == 0 and str(value).strip()!="\u21b3":
             pattern=re.compile(r"[\*\[\]\(\)]")
             name_link=re.sub(pattern, '', value)
             company_name=name_link.split("https")
@@ -43,10 +43,13 @@ def format_content(lst):
 
         #Handler to format and stores company location/s
         elif mod == 2:
-            pattern=re.compile(r'</br>,')
-            locations=re.sub(pattern,'',value)
-            locations.split()
-            intern_details.append(locations)
+            pattern=re.compile('<.*?>')
+            value=re.sub(pattern,'',value)
+            pattern2 = re.compile(r'\*\*\s*\d+\s+locations\s*\*\*')
+            value=re.sub(pattern2,'',value)
+
+            value.split()
+            intern_details.append(value)
         
         #Handler that formats and stores Internship application links as a list 
         elif mod == 3:
