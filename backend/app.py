@@ -20,17 +20,18 @@ def format_content(lst):
     num=1
     #Internship details are stored in a list and are the value of the dictionary 
     intern_details= list()
+
     for index, value in enumerate(lst):
         #Identifies the ReadMe 5 categories the for loop has reached 
         mod= index % 5
 
         #A handler for a edge case where instead of the company name from the last item it uses an arrow
-        if value=="\u21b3":
+        if str(value).strip()=="\u21b3":
             company_name=formatted_content[f'Internship_Details_{num-1}']
-            intern_details.append(company_name[0])
+            value=company_name[0]
 
         #Handler to format and stores Intenrship's company name 
-        if mod == 0 :
+        if mod == 0 and str(value).strip()!=r"\u21b3":
             pattern=re.compile(r"[\*\[\]\(\)]")
             name_link=re.sub(pattern, '', value)
             company_name=name_link.split("https")
@@ -49,10 +50,7 @@ def format_content(lst):
         
         #Handler that formats and stores Internship application links as a list 
         elif mod == 3:
-            "intern_applications=pattern3.sub(" ", value)"
-            "intern_applications=re.sub(pattern3,"",value)"
             intern_applications=re.findall(r'href="(https://[^"]+)"', value)
-            "intern_applications.split()"
             intern_details.append(intern_applications)
 
         #Handler that stores in the date posted and stores the intern_details list to formatted_content
