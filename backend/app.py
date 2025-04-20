@@ -24,6 +24,11 @@ def format_content(lst):
     for index, value in enumerate(lst):
         #Identifies the ReadMe 5 categories the for loop has reached 
         mod= index % 5
+        
+        parantheses=re.compile(r"\( | \)")
+        #if : x
+            
+
 
         #A handler for a edge case where instead of the company name from the last item it uses an arrow
         if str(value).strip()=="\u21b3":
@@ -31,8 +36,11 @@ def format_content(lst):
             value=company_name[0]
 
         #Handler to format and stores Intenrship's company name 
-        if mod == 0 and str(value).strip()!="\u21b3":
+        if mod == 0:
             pattern=re.compile(r"[\*\[\]\(\)]")
+            '''if re.findall(r'\*\*\[((.*?)\]',lst[index+5])==[]:
+            if re.findall(r'href="(https://[^"]+)"',lst[index+13])==[]:'''
+
             name_link=re.sub(pattern, '', value)
             company_name=name_link.split("https")
             intern_details.append(company_name[0])
@@ -84,14 +92,29 @@ def hello():
     edit_content=edit_content.split("\U0001F512",1)[0]
     edit_content=edit_content.split("|")
     edit_content=edit_content[:-4]
+    
+    #Goes through the edit_content list and formats it further where "\n" and any large entry are deleted
+    fixed_content=[]
+    for index, value in enumerate(edit_content):
+        #The condition where a job entry can be added into the list if it follows the size requirements
+        if value=="\n" and index%6==5:
+           beginning_category=index-5
+           ending_category=index-1
+           
+           #Only includes the entry details, ignoring "\n"
+           while beginning_category<=ending_category:
+            fixed_content.append(edit_content[beginning_category])
+            beginning_category+=1
+        
 
     #Removes any "\n" that are in the list
-    new_content = [x for x in edit_content if x.strip() not in [""]]
+    #new_content = [x for x in edit_content if x.strip() not in [""]]
 
-    format_content(new_content)
+    format_content(fixed_content)
    
    #Prints out a list keys from formatted_content
-    app.logger.info(list(formatted_content.keys()))
+    #app.logger.info(list(formatted_content.keys()))
+    app.logger.info(fixed_content)
     
    #Returns the dictionary to home page 
     return( 
